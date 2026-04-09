@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
+import java.util.List;
 
 public class ReportActivity extends AppCompatActivity {
     //Campo de texto onde os dados do banco serão exibidos
@@ -33,6 +34,19 @@ public class ReportActivity extends AppCompatActivity {
 
         UserDatabase db = Room.databaseBuilder(getApplication(),UserDatabase.class, "user-database"). allowMainThreadQueries().build();
 
+        //Obtém o objeto DAO (Data Access Object) que contém as queries SQL
+        UserDao userDao = db.userDao();
+        //Recupera todos os usuários salvos no BD e armazena numa lista
+        List<User> userlist = userDao.getAllUsers();
+        //StringBuilder: forma eficiente de construir uma String longa dentro de um laço (loop)
+        StringBuilder report = new StringBuilder();
+
+        //Loop "for-each" para percorrer cada objeto User dentro da lista reparada
+        for (User user: userlist){
+            report.append("Nome: ").append(user.getName()).append("\n").append("CPF: ").append(user.getCpf()).append("\n\n");
+        }
+        // Exibe o relatório final montado na TextView da tela
+        textViewReport.setText(report.toString());
     }
 
 
