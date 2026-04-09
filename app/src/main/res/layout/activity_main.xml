@@ -33,4 +33,21 @@
         android:hint="Telefone"
         />
 
+    <Button
+        android:id="@+id/buttonSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Cadastrar Usuário"
+        />
+
+    <Button
+        android:id="@+id/buttonReport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ver Relatório"
+        />
+
+
+
+
 </LinearLayout>
